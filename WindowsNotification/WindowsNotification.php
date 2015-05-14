@@ -106,13 +106,15 @@ namespace WindowsNotification
          * @param string $toastTemplate Toast xml template with values
          * @return array Return array with "WNS"=> all private WNS header and response => response code
          */
-        public function Send($channel, $template, $method = "POST")
+        public function Send($channel, $template, $method = HTTPMethod::Post)
         {
             $Header = $this->Options->GetHeaderArray();
-            // already sent by curl by default -->$Header["ContentLength"] = "Content-Length : ".strlen($template);
             $request = curl_init($channel);
+            if($method == HTTPMethod::Delete)
+                $Header["ContentLength"] = "Content-Length : ".strlen($template);
+            else
+                curl_setopt($request,CURLOPT_POSTFIELDS, $template);
             curl_setopt($request,CURLOPT_HTTPHEADER, $Header);
-            curl_setopt($request,CURLOPT_POSTFIELDS, $template);
             curl_setopt($request,CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($request, CURLOPT_HEADER, 1);
             curl_setopt($request,CURLOPT_CUSTOMREQUEST, $method);
@@ -121,7 +123,6 @@ namespace WindowsNotification
             curl_setopt($request, CURLINFO_HEADER_OUT, 1);
             $result = curl_exec($request);
             $result = array( "WNS" =>  explode("\n",$result),"response" => curl_getinfo($request,CURLINFO_HTTP_CODE));
-            print_r(curl_getinfo($request));
             return $result;
         }
     }
