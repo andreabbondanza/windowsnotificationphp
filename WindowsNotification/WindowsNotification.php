@@ -111,7 +111,7 @@ namespace WindowsNotification
             $Header = $this->Options->GetHeaderArray();
             $request = curl_init($channel);
             if($method == HTTPMethod::Delete)
-                $Header["ContentLength"] = "Content-Length : ".strlen($template);
+                $Header["ContentLength"] = "Content-Length : 0";
             else
                 curl_setopt($request,CURLOPT_POSTFIELDS, $template);
             curl_setopt($request,CURLOPT_HTTPHEADER, $Header);
