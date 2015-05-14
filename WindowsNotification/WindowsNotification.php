@@ -437,7 +437,7 @@ namespace WindowsNotification
          * Get the Header for the tile type
          * @return string Return the notification type
          */
-        public function GetHeaderX_WNS_TYPE($type)
+        public function GetHeaderX_WNS_TYPE()
         {
             return "X-WNS-Type: ".$this->X_WNS_TYPE;
         }
@@ -445,7 +445,7 @@ namespace WindowsNotification
          * GetHeader the cache policy
          * @return string The cache policy
          */
-        public function GetHeaderX_WNS_CACHE_POLICY($cp)
+        public function GetHeaderX_WNS_CACHE_POLICY()
         {
             return "X-WNS-Cache-Policy: ".$this->X_WNS_CACHE_POLICY;
         }
@@ -453,7 +453,7 @@ namespace WindowsNotification
          * GetHeader the request for status header
          * @return string 
          */
-        public function GetHeaderX_WNS_REQUESTFORSTATUS($request)
+        public function GetHeaderX_WNS_REQUESTFORSTATUS()
         {
             return "X-WNS-RequestForStatus: ".$this->X_WNS_REQUESTFORSTATUS;
         }
