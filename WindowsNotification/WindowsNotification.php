@@ -343,7 +343,8 @@ namespace WindowsNotification
                                 throw new \InvalidArgumentException("The params must contain group and tag definition for this match type");            
                             break;
                         }
-                    default: $this->X_WNS_MATCH = "type=wns/toast;all";
+                    case X_WNS_Match::All : { $this->X_WNS_MATCH = "type=wns/toast;all"; break; }
+                    default: $this->X_WNS_MATCH = null;
                 }
             }
             else
@@ -594,7 +595,6 @@ namespace WindowsNotification
     
     /**
      * WNS headers option for notification type
-     * NOTE: REQUIRED FIELD
      * @see https://msdn.microsoft.com/en-us/library/windows/apps/hh465435.aspx#pncodes_x_wns_type
      */
     final class X_WNS_Type 
@@ -652,9 +652,10 @@ namespace WindowsNotification
     {
         const __default = self::All;
         const TagAndGroup = 0;
-        const  Tag = 1;
+        const Tag = 1;
         const Group = 2;
-        const  All = 3;
+        const All = 3;
+        const None = null; 
     }
     
     /**
@@ -911,7 +912,7 @@ namespace WindowsNotification
         }
     }
     
-    /* to evaluate 
+    /* to evaluate for version, multi-binding and the high number of tile type\combination
     class TemplateTile
     {
     }
