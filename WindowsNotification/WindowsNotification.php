@@ -765,6 +765,7 @@ namespace WindowsNotification
          */
         private static function SoundDuration($sound)
         {
+            $duration = "";
             if($sound != TemplateToast::Silent)
             {
                 $duration = simplexml_load_string($sound);
