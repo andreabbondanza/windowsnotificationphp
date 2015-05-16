@@ -754,7 +754,7 @@ namespace WindowsNotification
          * @param $loop = false true if it's a loop sound, default is false, no-loop sound
          * @return string
          */
-        public static function CustomSeound($url,$loop = false)
+        public static function CustomSound($url,$loop = false)
         {
             return '<audio src="'.$url.'" loop="'.($loop ? "true" : "false").'" />';
         }
